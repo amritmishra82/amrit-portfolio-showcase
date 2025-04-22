@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -130,6 +129,96 @@
   .contact-button:hover {
     @apply scale-105 shadow-md;
   }
+
+  /* ==== Card Gradient for Extra Pop ==== */
+  .card-gradient {
+    @apply rounded-2xl shadow-lg bg-gradient-to-br from-portfolio-purple via-portfolio-gold to-portfolio-light p-6 text-portfolio-purple border-0;
+    border-left-width: 5px;
+    border-left-color: #ffb400;
+    transition: box-shadow 0.4s, transform 0.25s;
+  }
+  .card-gradient:hover {
+    box-shadow: 0 8px 36px 0 rgba(155,135,245,0.25), 0 1.5px 6px 0 #ffb40032;
+    transform: translateY(-8px) scale(1.03);
+  }
+
+  /* ==== Accent Pill/Badge ==== */
+  .accent-pill {
+    @apply px-3 py-1 rounded-full text-xs font-bold bg-portfolio-gold text-white shadow-md tracking-wider uppercase;
+    letter-spacing: 0.07em;
+  }
+
+  /* ==== Shine Hover for Buttons & Cards ==== */
+  .shine-hover {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: box-shadow 0.4s, transform 0.2s;
+  }
+  .shine-hover::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    pointer-events: none;
+    background: linear-gradient(110deg,rgba(255,255,255,0.0) 60%,rgba(255,255,255,0.19) 70%,rgba(255,255,255,0.0) 80%);
+    transform: translateX(-100%) rotate(15deg);
+    transition: transform 0.45s cubic-bezier(.27,1.64,.53,.95);
+    z-index: 2;
+  }
+  .shine-hover:hover::after {
+    transform: translateX(80%) rotate(15deg);
+  }
+
+  /* ==== Glassmorphic Card ==== */
+  .glassmorphic-bg {
+    @apply backdrop-blur-xl bg-white/40 border border-white/20 rounded-2xl shadow-xl;
+    box-shadow: 0 6px 50px 0 rgba(75,0,130,0.10), 0 1.5px 6px 0 #ffb40012;
+  }
+
+  /* ==== Pastel Card ==== */
+  .pastel-card {
+    @apply rounded-2xl p-5 shadow-xl border-0;
+    background: linear-gradient(90deg, #fceabb 0%, #f8b500 100%);
+    color: #4b0082;
+    box-shadow: 0 2px 20px #fff5d8, 0 1.5px 10px #f8b50033;
+    border-left: 5px solid #9b87f5;
+    transition: transform 0.22s, box-shadow 0.22s;
+  }
+  .pastel-card:hover {
+    transform: scale(1.025) translateY(-3px);
+    box-shadow: 0 6px 34px -3px #9b87f5a0;
+  }
+
+  /* ==== Animated Underline Link ==== */
+  .story-link {
+    @apply relative inline-block transition-colors;
+  }
+  .story-link::after {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: linear-gradient(90deg,#ffb400 30%,#4b0082 70%);
+    border-radius: 2px;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s cubic-bezier(.85,0,.15,1);
+  }
+  .story-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* ==== Extra Shadow Accent ==== */
+  .shadow-accent {
+    box-shadow: 0 10px 22px -8px #ffb40055, 0 0.5px 1.5px #4b008226;
+  }
 }
 
 @layer utilities {
@@ -139,5 +228,11 @@
 
   .text-gradient {
     @apply bg-gradient-to-br from-portfolio-purple via-portfolio-gold to-portfolio-purple bg-clip-text text-transparent;
+  }
+
+  /* Neon-like highlight for text */
+  .neon-text {
+    text-shadow: 0 2px 8px #ffb4007a, 0 1px 3px #4b0082da;
+    color: #fffdfa;
   }
 }
