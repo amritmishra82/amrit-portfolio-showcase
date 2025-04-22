@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -102,53 +103,123 @@
 }
 
 @layer components {
+  /* -- HERO Section with New Gradient, Glow & Texture -- */
   .hero-gradient {
-    @apply bg-gradient-to-br from-portfolio-purple to-portfolio-gold shadow-lg hover:shadow-xl transition-shadow duration-300;
+    @apply bg-gradient-to-br from-portfolio-purple via-fuchsia-500 to-portfolio-gold shadow-xl hover:shadow-2xl transition-shadow duration-300 relative overflow-hidden;
+    border-radius: 2rem;
+    position: relative;
+  }
+  .hero-gradient::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 70% 20%, #fdf49755 25%, #ffd37400 60%);
+    z-index: 0;
+    opacity: .6;
+  }
+
+  /* -- New Section Divider -- */
+  .section-divider {
+    height: 4px;
+    background: linear-gradient(90deg, #9b87f5 10%, #ffb400 50%, #1eaedb 90%);
+    border-radius: 99px;
+    margin: 3rem auto 2rem auto;
+    width: 80%;
+    box-shadow: 0 2px 18px #9b87f551;
+    opacity: 0.9;
   }
 
   .skill-card {
-    @apply bg-white rounded-lg p-4 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 ease-in-out border-l-4 border-portfolio-purple transform origin-center;
+    @apply bg-gradient-to-br from-purple-50 via-yellow-50 to-white rounded-2xl p-4 shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 border-l-[6px] border-portfolio-purple transform origin-center;
+    box-shadow: 0 3px 16px 0 #fae29944, 0 1px 6px #b2a2fd22;
   }
 
   .project-card {
-    @apply bg-white rounded-lg p-6 shadow-md hover:shadow-xl hover:border-portfolio-gold transition-all duration-300 border-l-4 border-portfolio-purple flex flex-col;
+    @apply bg-gradient-to-bl from-white via-amber-50 to-[#faf1e0] rounded-xl p-6 shadow-md hover:shadow-2xl hover:border-portfolio-gold border-l-4 border-portfolio-purple flex flex-col relative;
+    box-shadow: 0 2px 28px #ffebcc21, 0 1.5px 10px #9b87f547;
+    overflow: hidden;
+  }
+  .project-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 20% 80%, #fedb67cc 1%, transparent 65%);
+    pointer-events: none;
+    opacity: .42;
   }
 
+  /* -- Section Titles with Gradient Glow and Neon text --*/
   .section-title {
-    @apply text-2xl font-bold text-portfolio-purple border-b-2 border-portfolio-gold pb-2 mb-6 animate-slide-in;
+    @apply text-3xl font-extrabold border-b-4 border-portfolio-gold pb-2 mb-6 animate-slide-in;
+    background: linear-gradient(90deg,#9b87f5 20%,#ffb400 55%,#7ecdf7 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 15px #ffb40060, 0 1.5px 8px #1eaedb15;
+  }
+  .neon-title {
+    text-shadow: 0 0 8px #ffb400AA, 0 1px 5px #9b87f5;
+    letter-spacing: 1.5px;
+    filter: brightness(1.07);
+  }
+
+  /* New QUARTZ Accent Card, more unique */
+  .card-quartz {
+    @apply rounded-xl p-6 bg-gradient-to-tr from-white via-blue-100 to-yellow-50 shadow-2xl border-0;
+    border-left: 8px solid #ffb400;
+    box-shadow: 0 5.5px 36px #ffe08231, 0 1.5px 8px #9b87f550;
+    transition: transform .33s, box-shadow .33s;
+  }
+  .card-quartz:hover {
+    transform: scale(1.03) rotate(-1.5deg) translateY(-8px);
+    box-shadow: 0 10px 40px #9b87f598, 0 2px 14px #ffb40032;
   }
 
   .list-item {
-    @apply relative pl-6 mb-3 before:content-[''] before:absolute before:left-0 before:top-2 before:w-3 before:h-3 before:bg-portfolio-gold before:rounded-full hover:translate-x-1 transition-transform;
+    @apply relative pl-7 mb-3 font-medium;
+  }
+  .list-item:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 16px;
+    height: 16px;
+    background: radial-gradient(circle, #ffb400 70%, #eec078 100%);
+    border-radius: 99px;
+    box-shadow: 0 0 6px #ffb40040;
+  }
+  .list-item:hover {
+    @apply translate-x-2 transition-transform;
+    filter: brightness(1.12);
   }
 
+  /* Glowing, gradient animated Button -- use with .contact-button or standalone */
   .contact-button {
-    @apply flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-all duration-300;
+    @apply flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all duration-300;
+    background: linear-gradient(98deg, #9b87f5 0%, #ffb400 60%, #1eaedb 100%);
+    box-shadow: 0 1px 12px #b892fd3a, 0 1.5px 8px #ffd37442;
+    color: #4b0082 !important;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .contact-button:hover, .contact-button:focus-visible {
+    @apply scale-110 shadow-xl;
+    filter: brightness(1.08);
+    background: linear-gradient(89.5deg, #f4e2d8 9%, #ffb400 71%, #9b87f5 94%);
+    color: #2d2d2d !important;
+  }
+  .contact-button span {
+    text-shadow: 0 2px 6px #fef7cd73;
   }
 
-  .contact-button:hover {
-    @apply scale-105 shadow-md;
-  }
-
-  /* ==== Card Gradient for Extra Pop ==== */
-  .card-gradient {
-    @apply rounded-2xl shadow-lg bg-gradient-to-br from-portfolio-purple via-portfolio-gold to-portfolio-light p-6 text-portfolio-purple border-0;
-    border-left-width: 5px;
-    border-left-color: #ffb400;
-    transition: box-shadow 0.4s, transform 0.25s;
-  }
-  .card-gradient:hover {
-    box-shadow: 0 8px 36px 0 rgba(155,135,245,0.25), 0 1.5px 6px 0 #ffb40032;
-    transform: translateY(-8px) scale(1.03);
-  }
-
-  /* ==== Accent Pill/Badge ==== */
-  .accent-pill {
-    @apply px-3 py-1 rounded-full text-xs font-bold bg-portfolio-gold text-white shadow-md tracking-wider uppercase;
-    letter-spacing: 0.07em;
-  }
-
-  /* ==== Shine Hover for Buttons & Cards ==== */
+  /* Shine on hover for buttons & cards */
   .shine-hover {
     position: relative;
     overflow: hidden;
@@ -158,12 +229,12 @@
   .shine-hover::after {
     content: "";
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
+    top: -60%;
+    left: -80%;
+    width: 180%;
+    height: 220%;
     pointer-events: none;
-    background: linear-gradient(110deg,rgba(255,255,255,0.0) 60%,rgba(255,255,255,0.19) 70%,rgba(255,255,255,0.0) 80%);
+    background: linear-gradient(110deg,rgba(255,255,255,0.0) 70%,rgba(255,255,255,0.22) 80%,rgba(255,255,255,0.0) 82%);
     transform: translateX(-100%) rotate(15deg);
     transition: transform 0.45s cubic-bezier(.27,1.64,.53,.95);
     z-index: 2;
@@ -172,30 +243,28 @@
     transform: translateX(80%) rotate(15deg);
   }
 
-  /* ==== Glassmorphic Card ==== */
   .glassmorphic-bg {
     @apply backdrop-blur-xl bg-white/40 border border-white/20 rounded-2xl shadow-xl;
-    box-shadow: 0 6px 50px 0 rgba(75,0,130,0.10), 0 1.5px 6px 0 #ffb40012;
+    box-shadow: 0 12px 58px 0 rgba(75,0,130,0.13), 0 1.5px 7px 0 #ffb40016;
+    /* More pronounced glass look */
   }
 
-  /* ==== Pastel Card ==== */
+  /* -- Pastel Card polishes -- */
   .pastel-card {
     @apply rounded-2xl p-5 shadow-xl border-0;
-    background: linear-gradient(90deg, #fceabb 0%, #f8b500 100%);
+    background: linear-gradient(94deg, #fceabb 0%, #f8b500 100%);
     color: #4b0082;
     box-shadow: 0 2px 20px #fff5d8, 0 1.5px 10px #f8b50033;
-    border-left: 5px solid #9b87f5;
+    border-left: 6px solid #9b87f5;
     transition: transform 0.22s, box-shadow 0.22s;
   }
   .pastel-card:hover {
-    transform: scale(1.025) translateY(-3px);
-    box-shadow: 0 6px 34px -3px #9b87f5a0;
+    transform: scale(1.036) translateY(-2.5px) rotate(.5deg);
+    box-shadow: 0 8px 44px -4px #9b87f5b1;
   }
 
-  /* ==== Animated Underline Link ==== */
-  .story-link {
-    @apply relative inline-block transition-colors;
-  }
+  /* --- Animated Underline Link --- */
+  .story-link { @apply relative inline-block transition-colors font-semibold;}
   .story-link::after {
     content: "";
     display: block;
@@ -215,9 +284,19 @@
     transform-origin: left;
   }
 
-  /* ==== Extra Shadow Accent ==== */
   .shadow-accent {
-    box-shadow: 0 10px 22px -8px #ffb40055, 0 0.5px 1.5px #4b008226;
+    box-shadow: 0 10px 26px -8px #ffb40077, 0 0.5px 1.5px #4b008238;
+  }
+
+  /* -- New Rainbow Divider -- */
+  .rainbow-divider {
+    height: 5px;
+    width: 70%;
+    margin: 3rem auto 1.5rem auto;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #7e69ab, #1eaedb 20%, #ffb400 45%, #f97316 73%, #9b87f5 90%);
+    box-shadow: 0 0px 14px #9b87f570;
+    opacity: 0.99;
   }
 }
 
@@ -228,11 +307,34 @@
 
   .text-gradient {
     @apply bg-gradient-to-br from-portfolio-purple via-portfolio-gold to-portfolio-purple bg-clip-text text-transparent;
+    filter: brightness(1.05) contrast(1.08);
   }
 
-  /* Neon-like highlight for text */
+  /* New more intense neon highlight for words */
   .neon-text {
-    text-shadow: 0 2px 8px #ffb4007a, 0 1px 3px #4b0082da;
-    color: #fffdfa;
+    text-shadow: 0 3px 14px #ffb400c6, 0 1.5px 8px #a3e8fa99, 0 0 3px #fffbe6;
+    color: #fffbfa;
+    letter-spacing: 1.7px;
+  }
+  /* Soft-glow utility for icons or images */
+  .glow {
+    filter: drop-shadow(0 0 12px #ffcf8bcc) drop-shadow(0 0 6px #a4f1fad1);
+  }
+
+  /* Delicate fade-in (for dividers etc) */
+  .fade-in-divider {
+    animation: fade-in 1.2s cubic-bezier(.24,1.08,.39,.94);
   }
 }
+
+/* --- Decorative Shape/Accent (use as absolute backgrounds if you want uniqueness!) --- */
+.wave-accent {
+  position: absolute;
+  left: 0; right: 0; bottom: -24px; height: 42px;
+  pointer-events: none;
+  background: url('data:image/svg+xml;utf8,<svg width="100%" height="42" viewBox="0 0 1500 42" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0C0 0 341.1 29.25 718.5 29.25C1095.9 29.25 1500 0 1500 0V42H0V0Z" fill="%23fceabb"/><path d="M0 32C0 32 538.889 54.5 753 32C967.111 9.5 1500 32 1500 32V42H0V32Z" fill="%23ffb400" fill-opacity="0.57"/></svg>');
+  background-size: cover;
+  z-index: 2;
+}
+
+/* End Custom Styles */
